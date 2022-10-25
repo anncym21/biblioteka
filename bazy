@@ -1,0 +1,29 @@
+tabela ksiżąki
+CREATE TABLE [dbo].[ksiazki]
+(
+	[Id_ksiazki] INT NOT NULL PRIMARY KEY, 
+    [tytuł] TEXT NULL, 
+    [autor] TEXT NULL, 
+    [gatunek] TEXT NULL, 
+    [od_ilu_lat] TEXT NULL
+)
+
+tabela użytkownicy
+CREATE TABLE [dbo].[uzytkownicy]
+(
+	[Id_uzytkownicy] INT NOT NULL PRIMARY KEY, 
+    [imie] TEXT NULL, 
+    [nazwisko] TEXT NULL, 
+    [adres] TEXT NULL, 
+    [wiek] TEXT NULL
+)
+
+tabela wypożycznia
+CREATE TABLE [dbo].[wypozyczenia]
+(
+	[Id_wypozyczenia] INT NOT NULL PRIMARY KEY, 
+    [Id_ksiazki] INT NULL, 
+    [Id_uzytkownicy] INT NULL,
+	FOREIGN KEY (Id_ksiazki) REFERENCES ksiazki(Id_ksiazki),
+	FOREIGN KEY (Id_uzytkownicy) REFERENCES uzytkownicy(Id_uzytkownicy)
+)
