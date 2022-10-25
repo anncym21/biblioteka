@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:biblioteka"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Biblioteka" Height="450" Width="800">
     <Grid>
+        <TextBox x:Name="login" HorizontalAlignment="Left" Margin="58,81,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Height="25"/>
+        <Label Content="login" HorizontalAlignment="Left" Margin="58,50,0,0" VerticalAlignment="Top" Width="106" Height="26"/>
+        <Label Content="haslo" HorizontalAlignment="Left" Margin="58,141,0,0" VerticalAlignment="Top" Width="60"/>
+        <TextBox x:Name="haslo" HorizontalAlignment="Left" Margin="58,172,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="zaloguj" Content="zatwierdź" HorizontalAlignment="Left" Height="29" Margin="54,246,0,0" VerticalAlignment="Top" Width="114"/>
 
     </Grid>
 </Window>
