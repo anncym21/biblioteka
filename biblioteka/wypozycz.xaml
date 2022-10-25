@@ -1,0 +1,34 @@
+﻿<Window x:Class="biblioteka.wypozycz"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:biblioteka"
+        mc:Ignorable="d"
+        Title="wypozycz" Height="450" Width="800">
+    <Grid>
+        <Label Content="Tytuł" HorizontalAlignment="Left" Margin="31,20,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="tytul" HorizontalAlignment="Left" Margin="10,51,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="czy_dostepna" Content="czy jest dostepna?" HorizontalAlignment="Left" Margin="18,123,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="31" Width="125">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.363"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Button x:Name="dostep" Content="sprawdz dostepnosc" HorizontalAlignment="Left" Margin="14,95,0,0" VerticalAlignment="Top" Width="125" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.133"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+
+    </Grid>
+</Window>
