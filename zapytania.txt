@@ -1,0 +1,17 @@
+tabela ksiazka
+CREATE TABLE [dbo].[ksiazka]
+(
+	[id_ksiazka] INT NOT NULL PRIMARY KEY, 
+    [tytul] TEXT NULL, 
+    [autor] TEXT NULL, 
+    [kategoria] TEXT NULL
+)
+
+tabela autorzy
+CREATE TABLE [dbo].[autorzy]
+(
+	[id_autor] INT NOT NULL PRIMARY KEY,
+	[imie] TEXT NULL,
+	[nazwisko] TEXT NULL
+)
+
