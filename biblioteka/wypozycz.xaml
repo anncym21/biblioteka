@@ -34,7 +34,7 @@
                         <ColumnDefinition Width="17*"/>
                         <ColumnDefinition Width="380*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="Tytuł książki książi.:" HorizontalAlignment="Left" Margin="17,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <Label Content="Tytuł książki.:" HorizontalAlignment="Left" Margin="17,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
                     <Label Grid.Column="1" Content="Data wyporzyczenia.:" HorizontalAlignment="Left" Margin="251,10,0,0" VerticalAlignment="Top"/>
                     <Label Grid.Column="1" Content="Data oddania .:" HorizontalAlignment="Left" Margin="472,10,0,0" VerticalAlignment="Top"/>
                 </Grid>
