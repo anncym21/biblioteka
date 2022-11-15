@@ -3,7 +3,6 @@ CREATE TABLE [dbo].[ksiazka]
 (
 	[id] INT NOT NULL PRIMARY KEY, 
     [tytul] TEXT NULL, 
-    [autor] TEXT NULL, 
     [kategoria] TEXT NULL,
 	[id_autor] INT NOT NULL FOREIGN KEY (id_autor) REFERENCES dbo.autorzy(id)
 )
