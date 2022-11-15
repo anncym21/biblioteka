@@ -1,17 +1,48 @@
 tabela ksiazka
 CREATE TABLE [dbo].[ksiazka]
 (
-	[id_ksiazka] INT NOT NULL PRIMARY KEY, 
+	[id] INT NOT NULL PRIMARY KEY, 
     [tytul] TEXT NULL, 
     [autor] TEXT NULL, 
-    [kategoria] TEXT NULL
+    [kategoria] TEXT NULL,
+	[id_autor] INT NOT NULL FOREIGN KEY (id_autor) REFERENCES dbo.autorzy(id)
 )
-
 tabela autorzy
 CREATE TABLE [dbo].[autorzy]
 (
-	[id_autor] INT NOT NULL PRIMARY KEY,
+	[id] INT NOT NULL PRIMARY KEY,
 	[imie] TEXT NULL,
 	[nazwisko] TEXT NULL
 )
 
+tabela egzemplarze
+CREATE TABLE [dbo].[egzemplarze]
+(
+	[id] INT NOT NULL PRIMARY KEY, 
+    [id_ksiazki] INT NOT NULL FOREIGN KEY (id_ksiazki) REFERENCES dbo.ksiazka(id), 
+    [do_wyporzyczenia] TEXT NULL,
+
+)
+
+tabela czytelnicy
+CREATE TABLE [dbo].[czytelnicy]
+(
+	[id] INT NOT NULL PRIMARY KEY, 
+    [nazwisko] TEXT NULL, 
+    [imie] TEXT NULL, 
+    [adres] TEXT NULL, 
+    [miasto] TEXT NULL, 
+    [kod_pocztowy] TEXT NULL, 
+    [data_zapisania] DATE NULL,
+
+)
+
+tabela wyporzyczenia
+CREATE TABLE [dbo].[wyporzyczenia]
+(
+	[id_egzemplarz] INT NOT NULL FOREIGN KEY (id_egzemplarz) REFERENCES dbo.egzemplarze(id), 
+    [id_czytelnik] INT NOT NULL FOREIGN KEY (id_czytelnik) REFERENCES dbo.czytelnicy(id), 
+    [data_wyp] DATE NULL, 
+    [data_zwrot] DATE NULL,
+
+)
