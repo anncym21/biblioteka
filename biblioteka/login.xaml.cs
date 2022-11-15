@@ -23,6 +23,9 @@ namespace biblioteka
         public MainWindow()
         {
             InitializeComponent();
+            wypozycz wypozycz = new wypozycz();
+            wypozycz.ShowDialog();
+            this.Close();
         }
     }
 }
