@@ -1,0 +1,1 @@
+﻿select id, tytul, kategoria, id_autor from dbo.ksiazka where kategoria like 'literatura';

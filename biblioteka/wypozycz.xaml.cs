@@ -69,5 +69,17 @@ namespace biblioteka
             dostepne_egzemplarze(wybrana_kategoria);
            
         }
+
+        private void do_wyporzyczenia_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGrid dataGrid = sender as DataGrid;
+            DataRowView rowView = dataGrid.SelectedItem as DataRowView;
+            string id_k = rowView.Row[0].ToString();
+            
+            cmd = new SqlCommand("Select count(id) as ilosc from dbo.egzemplarze where id = "+id_k, con);
+            con.Open();
+           
+            con.Close();
+        }
     }
 }
