@@ -24,8 +24,8 @@ namespace biblioteka
     /// </summary>
     public partial class wypozycz : Window
     {
-        string query = "select do_wyporzyczenia from dbo.egzemplarze";
-        string baza = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog = biblioteka; Integrated Security = True; Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        string query = "select id, tytul, kategoria, id_autor as id__autor from dbo.ksiazka";
+        string baza = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=baza;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         SqlConnection con;
         
         public wypozycz()

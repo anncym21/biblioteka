@@ -12,11 +12,6 @@
                 <Grid Background="#FFE5E5E5">
                     <Label Content="Lista dostępnych książek.:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                     <DataGrid x:Name="do_wyporzyczenia" Margin="10,41,208,237">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="id_ksiazki" />
-                            <DataGridTextColumn Header="id_egzemplarz" />
-                            <DataGridTextColumn Header="kategoria" />
-                        </DataGrid.Columns>
                     </DataGrid>
                             <Label Content="Ile dostępnych egzemplarzy.:" HorizontalAlignment="Left" Margin="22,185,0,0" VerticalAlignment="Top"/>
                     <Label Content="Kategoria" HorizontalAlignment="Left" Margin="661,10,0,0" VerticalAlignment="Top"/>
