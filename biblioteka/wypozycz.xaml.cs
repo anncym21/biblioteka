@@ -76,9 +76,9 @@ namespace biblioteka
             DataRowView rowView = dataGrid.SelectedItem as DataRowView;
             string id_k = rowView.Row[0].ToString();
             
-            cmd = new SqlCommand("Select count(id) as ilosc from dbo.egzemplarze where id = "+id_k, con);
+            cmd = new SqlCommand("Select count(id) from dbo.egzemplarze where id = "+id_k, con);
             con.Open();
-           
+            ilosc_egzemplarzy.Content = "Ile dostępnych egzemplarzy.:" + cmd.ExecuteScalar().ToString();
             con.Close();
         }
     }
