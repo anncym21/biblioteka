@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using System.Data;
 
 namespace biblioteka
 {
@@ -25,17 +26,31 @@ namespace biblioteka
     {
         string baza = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog = biblioteka; Integrated Security = True; Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         SqlConnection con;
-        void wczytaj_kategorie()
-        {
-            con = new SqlConnection(baza);
-        }
+        
         public wypozycz()
         {
             InitializeComponent();
-            
+            wczytaj_kategorie();
 
         }
-
+        void wczytaj_kategorie()
+        {
+            kategoria.Items.Add("lektura");
+            kategoria.Items.Add("literatura");
+            kategoria.Items.Add("dla dzieci");
+            kategoria.Items.Add("horror");
+        }
+        void dostepne_egzemplarze()
+        {
+            SqlCommand cmd = new SqlCommand("select do_wyporzyczenia from dbo.egzemplarze", con);
+            con.Open();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            do_wyporzyczenia.ItemsSource = dt.DefaultView;
+            cmd.Dispose();
+            con.Close();
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
