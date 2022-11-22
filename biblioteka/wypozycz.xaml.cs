@@ -24,14 +24,16 @@ namespace biblioteka
     /// </summary>
     public partial class wypozycz : Window
     {
+        string query = "select do_wyporzyczenia from dbo.egzemplarze";
         string baza = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog = biblioteka; Integrated Security = True; Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         SqlConnection con;
         
         public wypozycz()
         {
             InitializeComponent();
+            con = new SqlConnection(baza);
             wczytaj_kategorie();
-
+            dostepne_egzemplarze();
         }
         void wczytaj_kategorie()
         {
@@ -42,7 +44,7 @@ namespace biblioteka
         }
         void dostepne_egzemplarze()
         {
-            SqlCommand cmd = new SqlCommand("select do_wyporzyczenia from dbo.egzemplarze", con);
+            SqlCommand cmd = new SqlCommand(query, con);
             con.Open();
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
