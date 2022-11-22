@@ -27,6 +27,7 @@ namespace biblioteka
         string query = "select id, tytul, kategoria, id_autor as id__autor from dbo.ksiazka";
         string baza = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=baza;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         SqlConnection con;
+        SqlCommand cmd;
         
         public wypozycz()
         {
@@ -42,20 +43,31 @@ namespace biblioteka
             kategoria.Items.Add("dla dzieci");
             kategoria.Items.Add("horror");
         }
-        void dostepne_egzemplarze()
-        {
-            SqlCommand cmd = new SqlCommand(query, con);
-            con.Open();
-            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            adapter.Fill(dt);
-            do_wyporzyczenia.ItemsSource = dt.DefaultView;
-            cmd.Dispose();
-            con.Close();
+        void dostepne_egzemplarze(string wybrana_kategoria = "")
+        {   if (wybrana_kategoria == ""){
+               
+                cmd = new SqlCommand(query, con);
+            }
+            else
+            { 
+                cmd = new SqlCommand("select id, tytul, kategoria, id_autor as id__autor from dbo.ksiazka where kategoria like '"+wybrana_kategoria+ "'", con);
+            }
+                con.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                do_wyporzyczenia.ItemsSource = dt.DefaultView;
+                cmd.Dispose();
+                con.Close();
+           
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
 
+
+        private void kategoria_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            string wybrana_kategoria = kategoria.Items.GetItemAt(kategoria.SelectedIndex).ToString();
+            dostepne_egzemplarze(wybrana_kategoria);
+           
         }
     }
 }
