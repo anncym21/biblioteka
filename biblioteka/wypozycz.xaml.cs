@@ -113,6 +113,7 @@ namespace biblioteka
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            string wolne_egzemplarze = "SELECT * FROM egzemplarze WHERE id_ksiazki =" + id_k + " AND do_wyporzyczenia LIKE 'tak'";
             string update_egzeplarz = "UPDATE dbo.egzemplarze SET do_wyporzyczenia = 'tak' WHERE id_ksiazki =" + id_k;
             con.Open();
             cmd = new SqlCommand(update_egzeplarz, con);

@@ -1,1 +1,1 @@
-﻿select id, tytul, kategoria, id_autor from dbo.ksiazka where kategoria like 'literatura';
+﻿SELECT ksiazka.id, ksiazka.tytul, ksiazka.kategoria FROM ksiazka INNER JOIN egzemplarze ON ksiazka.id = egzemplarze.id_ksiazki WHERE egzemplarze.do_wyporzyczenia like 'tak'
