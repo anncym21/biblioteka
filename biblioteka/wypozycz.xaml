@@ -15,7 +15,7 @@
                     </DataGrid>
                             <Label x:Name="ilosc_egzemplarzy" Content="Ile dostępnych egzemplarzy.:" HorizontalAlignment="Left" Margin="22,185,0,0" VerticalAlignment="Top"/>
                     <Label Content="Kategoria" HorizontalAlignment="Left" Margin="661,10,0,0" VerticalAlignment="Top"/>
-                    <Button Content="Wyporzycz" HorizontalAlignment="Left" Margin="705,361,0,0" VerticalAlignment="Top"/>
+                    <Button Content="Wyporzycz" HorizontalAlignment="Left" Margin="705,361,0,0" VerticalAlignment="Top" Click="Button_Click"/>
                     <ComboBox x:Name="kategoria" HorizontalAlignment="Left" Margin="631,41,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="kategoria_SelectionChanged_1"/>
                 </Grid>
             </TabItem>

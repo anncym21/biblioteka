@@ -28,7 +28,8 @@ namespace biblioteka
         string baza = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=baza;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         SqlConnection con;
         SqlCommand cmd;
-        
+        string id_k;
+
         public wypozycz()
         {
             InitializeComponent();
@@ -74,12 +75,32 @@ namespace biblioteka
         {
             DataGrid dataGrid = sender as DataGrid;
             DataRowView rowView = dataGrid.SelectedItem as DataRowView;
-            string id_k = rowView.Row[0].ToString();
+            if(con.State != ConnectionState.Open)
+            {
+                con.Open();
+            }
+            int ile = 0;
+            if(rowView != null)
+            {
+                MessageBox.Show("ilosc.");
+                id_k = rowView.Row[0].ToString();
+                cmd = new SqlCommand("Select * from dbo.egzemplarze where id = " + id_k + "and do_wyporzyczenia like 'tak'", con);
+                SqlDataReader czyt = cmd.ExecuteReader();
+                while (czyt.Read())
+                {
+                    ile += 1;
+                }
+
+                ilosc_egzemplarzy.Content = "Ile dostępnych egzemplarzy.:" + ile.ToString();
+            }
             
-            cmd = new SqlCommand("Select count(id) from dbo.egzemplarze where id = "+id_k, con);
-            con.Open();
-            ilosc_egzemplarzy.Content = "Ile dostępnych egzemplarzy.:" + cmd.ExecuteScalar().ToString();
+            
             con.Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
