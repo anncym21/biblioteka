@@ -36,6 +36,7 @@ namespace biblioteka
             con = new SqlConnection(baza);
             wczytaj_kategorie();
             dostepne_egzemplarze();
+            wczytaj_wyporzyczone();
         }
         void wczytaj_kategorie()
         {
@@ -43,6 +44,18 @@ namespace biblioteka
             kategoria.Items.Add("literatura");
             kategoria.Items.Add("dla dzieci");
             kategoria.Items.Add("horror");
+        }
+        void wczytaj_wyporzyczone()
+        {
+            string wyporzyczone = "SELECT ksiazka.id, ksiazka.tytul, ksiazka.kategoria FROM ksiazka INNER JOIN egzemplarze ON ksiazka.id = egzemplarze.id_ksiazki WHERE egzemplarze.do_wyporzyczenia like 'tak'";
+            cmd = new SqlCommand(wyporzyczone, con);
+            con.Open();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            aktualnie_wyporzyczone.ItemsSource = dt.DefaultView;
+            cmd.Dispose();
+            con.Close();
         }
         void dostepne_egzemplarze(string wybrana_kategoria = "")
         {   if (wybrana_kategoria == ""){
@@ -82,7 +95,7 @@ namespace biblioteka
             int ile = 0;
             if(rowView != null)
             {
-                MessageBox.Show("ilosc.");
+                
                 id_k = rowView.Row[0].ToString();
                 cmd = new SqlCommand("Select * from dbo.egzemplarze where id = " + id_k + "and do_wyporzyczenia like 'tak'", con);
                 SqlDataReader czyt = cmd.ExecuteReader();
@@ -100,7 +113,12 @@ namespace biblioteka
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            string update_egzeplarz = "UPDATE dbo.egzemplarze SET do_wyporzyczenia = 'tak' WHERE id_ksiazki =" + id_k;
+            con.Open();
+            cmd = new SqlCommand(update_egzeplarz, con);
+            cmd.ExecuteScalar();
+            con.Close();
+            MessageBox.Show("Książka wyporzyczona");
         }
     }
 }

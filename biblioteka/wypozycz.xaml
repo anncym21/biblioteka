@@ -13,25 +13,24 @@
                     <Label Content="Lista dostępnych książek.:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                     <DataGrid x:Name="do_wyporzyczenia" Margin="10,41,208,237" SelectionChanged="do_wyporzyczenia_SelectionChanged">
                     </DataGrid>
-                            <Label x:Name="ilosc_egzemplarzy" Content="Ile dostępnych egzemplarzy.:" HorizontalAlignment="Left" Margin="22,185,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="ilosc_egzemplarzy" Content="Ile dostępnych egzemplarzy.:" HorizontalAlignment="Left" Margin="22,185,0,0" VerticalAlignment="Top"/>
                     <Label Content="Kategoria" HorizontalAlignment="Left" Margin="661,10,0,0" VerticalAlignment="Top"/>
                     <Button Content="Wyporzycz" HorizontalAlignment="Left" Margin="705,361,0,0" VerticalAlignment="Top" Click="Button_Click"/>
                     <ComboBox x:Name="kategoria" HorizontalAlignment="Left" Margin="631,41,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="kategoria_SelectionChanged_1"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Aktualne">
-                <Grid Background="#FFE5E5E5">
+                <Grid x:Name="aktualnie" Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="17*"/>
-                        <ColumnDefinition Width="380*"/>
+                        <ColumnDefinition Width="34*"/>
+                        <ColumnDefinition Width="209*"/>
+                        <ColumnDefinition Width="551*"/>
                     </Grid.ColumnDefinitions>
                     <Label Content="Wyporzyczone książki.:" HorizontalAlignment="Left" Margin="17,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
                     <Label Content="Data wyporzyczenia.:" HorizontalAlignment="Left" Margin="19,0,0,0" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
-                    <Label Grid.Column="1" Content="Czas pozostały do zwrotu.:" HorizontalAlignment="Left" Margin="503,0,0,0" VerticalAlignment="Center"/>
-                    <DataGrid x:Name="aktualnie_wyporzyczone" Grid.ColumnSpan="2" Margin="17,41,17,240">
+                    <Label Grid.Column="2" Content="Czas pozostały do zwrotu.:" HorizontalAlignment="Left" Margin="294,0,0,0" VerticalAlignment="Center"/>
+                    <DataGrid x:Name="aktualnie_wyporzyczone" Grid.ColumnSpan="3" Margin="17,41,17,240">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="tytul" />
-                            <DataGridTextColumn Header="id_ksiazki" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
