@@ -104,7 +104,7 @@ namespace biblioteka
                     ile += 1;
                 }
 
-                ilosc_egzemplarzy.Content = "Ile dostępnych egzemplarzy.:" + ile.ToString();
+                ilosc_egzemplarzy.Content = "Ile dostępnych egzemplarzy.: " + ile.ToString();
             }
             
             
@@ -141,7 +141,7 @@ namespace biblioteka
                     data++;
 
                 }
-                do_wyporzyczenia1.Content = "Data wyporzyczenia.:" + data.ToString();
+                do_wyporzyczenia1.Content = "Data wyporzyczenia.: " + data.ToString();
             }
             con.Close();
         }
