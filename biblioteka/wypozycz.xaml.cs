@@ -158,6 +158,10 @@ namespace biblioteka
             {
                 cmd = new SqlCommand("Select * from dbo.wyporzyczenia where data_zwrot is not null");
                 SqlDataReader historia = cmd.ExecuteReader();
+                while (historia.Read())
+                {
+
+                }
             }
             con.Close();
         }
