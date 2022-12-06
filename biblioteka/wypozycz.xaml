@@ -44,7 +44,7 @@
                         <ColumnDefinition Width="17*"/>
                         <ColumnDefinition Width="380*"/>
                     </Grid.ColumnDefinitions>
-                    <DataGrid x:Name="historia" Grid.ColumnSpan="2" Margin="17,61,17,173">
+                    <DataGrid x:Name="historia" Grid.ColumnSpan="2" Margin="17,61,17,173" SelectionChanged="historia_SelectionChanged">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="id_ksiazki" />
                             <DataGridTextColumn Header="tytul" />

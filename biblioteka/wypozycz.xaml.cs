@@ -143,6 +143,23 @@ namespace biblioteka
                 }
                 do_wyporzyczenia1.Content = "Data wyporzyczenia.:" + data.ToString();
             }
+            con.Close();
+        }
+
+        private void historia_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGrid dataGrid = sender as DataGrid;
+            DataRowView rowView = dataGrid.SelectedItem as DataRowView;
+            if (con.State != ConnectionState.Open)
+            {
+                con.Open();
+            }
+            if (rowView != null)
+            {
+                cmd = new SqlCommand("Select * from dbo.wyporzyczenia where data_zwrot is not null");
+                SqlDataReader historia = cmd.ExecuteReader();
+            }
+            con.Close();
         }
     }
 }
