@@ -10,13 +10,17 @@
         <TabControl>
             <TabItem Header="Wyporzyczenia">
                 <Grid Background="#FFE5E5E5">
-                    <Label Content="Lista dostępnych książek.:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                    <DataGrid x:Name="do_wyporzyczenia" Margin="10,41,208,237" SelectionChanged="do_wyporzyczenia_SelectionChanged">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="125*"/>
+                        <ColumnDefinition Width="669*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Lista dostępnych książek.:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <DataGrid x:Name="do_wyporzyczenia" Margin="10,41,208,237" SelectionChanged="do_wyporzyczenia_SelectionChanged" Grid.ColumnSpan="2">
                     </DataGrid>
-                    <Label x:Name="ilosc_egzemplarzy" Content="Ile dostępnych egzemplarzy.:" HorizontalAlignment="Left" Margin="22,185,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Kategoria" HorizontalAlignment="Left" Margin="661,10,0,0" VerticalAlignment="Top"/>
-                    <Button Content="Wyporzycz" HorizontalAlignment="Left" Margin="705,361,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-                    <ComboBox x:Name="kategoria" HorizontalAlignment="Left" Margin="631,41,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="kategoria_SelectionChanged_1"/>
+                    <Label x:Name="ilosc_egzemplarzy" Content="Ile dostępnych egzemplarzy.:" HorizontalAlignment="Left" Margin="22,185,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <Label Content="Kategoria" HorizontalAlignment="Left" Margin="536,10,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <Button Content="Wyporzycz" HorizontalAlignment="Left" Margin="580,361,0,0" VerticalAlignment="Top" Click="Button_Click" Grid.Column="1"/>
+                    <ComboBox x:Name="kategoria" HorizontalAlignment="Left" Margin="506,41,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="kategoria_SelectionChanged_1" Grid.Column="1"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Aktualne">
@@ -27,9 +31,8 @@
                         <ColumnDefinition Width="551*"/>
                     </Grid.ColumnDefinitions>
                     <Label Content="Wyporzyczone książki.:" HorizontalAlignment="Left" Margin="17,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-                    <Label Content="Data wyporzyczenia.:" HorizontalAlignment="Left" Margin="19,0,0,0" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
-                    <Label Grid.Column="2" Content="Czas pozostały do zwrotu.:" HorizontalAlignment="Left" Margin="294,0,0,0" VerticalAlignment="Center"/>
-                    <DataGrid x:Name="aktualnie_wyporzyczone" Grid.ColumnSpan="3" Margin="17,41,17,240">
+                    <Label x:Name="do_wyporzyczenia1" Content="Data wyporzyczenia.:" HorizontalAlignment="Left" Margin="19,0,0,0" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+                    <DataGrid x:Name="aktualnie_wyporzyczone" Grid.ColumnSpan="3" Margin="17,41,17,240" SelectionChanged="aktualnie_wyporzyczone_SelectionChanged">
                         <DataGrid.Columns>
                         </DataGrid.Columns>
                     </DataGrid>

@@ -121,5 +121,28 @@ namespace biblioteka
             con.Close();
             MessageBox.Show("Książka wyporzyczona");
         }
+
+        private void aktualnie_wyporzyczone_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGrid dataGrid = sender as DataGrid;
+            DataRowView rowView = dataGrid.SelectedItem as DataRowView;
+            if (con.State != ConnectionState.Open)
+            {
+                con.Open();
+            }
+            int data = 0;
+            if(rowView != null)
+            {
+                id_k = rowView.Row[0].ToString();
+                cmd = new SqlCommand("Select * from dbo.wyporzyczenia where id_czytelnik =" + id_k, con);
+                SqlDataReader czyt_data = cmd.ExecuteReader();
+                while (czyt_data.Read())
+                {
+                    data++;
+
+                }
+                do_wyporzyczenia1.Content = "Data wyporzyczenia.:" + data.ToString();
+            }
+        }
     }
 }
