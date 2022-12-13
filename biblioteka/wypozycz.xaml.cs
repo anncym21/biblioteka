@@ -124,6 +124,7 @@ namespace biblioteka
             wczytaj_historie();
             MessageBox.Show("Książka wyporzyczona");
         }
+         
 
         private void aktualnie_wyporzyczone_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
