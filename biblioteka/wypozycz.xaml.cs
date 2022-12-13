@@ -37,6 +37,7 @@ namespace biblioteka
             wczytaj_kategorie();
             dostepne_egzemplarze();
             wczytaj_wyporzyczone();
+            wczytaj_historie();
         }
         void wczytaj_kategorie()
         {
@@ -47,7 +48,7 @@ namespace biblioteka
         }
         void wczytaj_wyporzyczone()
         {
-            string wyporzyczone = "SELECT ksiazka.id, ksiazka.tytul, ksiazka.kategoria FROM ksiazka INNER JOIN egzemplarze ON ksiazka.id = egzemplarze.id_ksiazki WHERE egzemplarze.do_wyporzyczenia like 'tak'";
+            string wyporzyczone = "SELECT ksiazka.id, ksiazka.tytul, ksiazka.kategoria, wyporzyczenia.data_wyp, wyporzyczenia.data_zwrot FROM ksiazka INNER JOIN egzemplarze ON ksiazka.id = egzemplarze.id_ksiazki INNER JOIN wyporzyczenia ON wyporzyczenia.id_egzemplarz = egzemplarze.id WHERE egzemplarze.do_wyporzyczenia like 'tak' and data_zwrot is null";
             cmd = new SqlCommand(wyporzyczone, con);
             con.Open();
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -97,7 +98,7 @@ namespace biblioteka
             {
                 
                 id_k = rowView.Row[0].ToString();
-                cmd = new SqlCommand("Select * from dbo.egzemplarze where id = " + id_k + "and do_wyporzyczenia like 'tak'", con);
+                cmd = new SqlCommand("Select * from dbo.egzemplarze where id_ksiazki = " + id_k + "and do_wyporzyczenia like 'tak'", con);
                 SqlDataReader czyt = cmd.ExecuteReader();
                 while (czyt.Read())
                 {
@@ -113,37 +114,22 @@ namespace biblioteka
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string wolne_egzemplarze = "SELECT * FROM egzemplarze WHERE id_ksiazki =" + id_k + " AND do_wyporzyczenia LIKE 'tak'";
-            string update_egzeplarz = "UPDATE dbo.egzemplarze SET do_wyporzyczenia = 'tak' WHERE id_ksiazki =" + id_k;
+           
+            string update_egzeplarz = "UPDATE TOP(1) dbo.egzemplarze SET do_wyporzyczenia = 'nie' WHERE id_ksiazki =" + id_k ;
             con.Open();
             cmd = new SqlCommand(update_egzeplarz, con);
             cmd.ExecuteScalar();
             con.Close();
+            wczytaj_wyporzyczone();
+            wczytaj_historie();
             MessageBox.Show("Książka wyporzyczona");
         }
 
         private void aktualnie_wyporzyczone_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DataGrid dataGrid = sender as DataGrid;
-            DataRowView rowView = dataGrid.SelectedItem as DataRowView;
-            if (con.State != ConnectionState.Open)
-            {
-                con.Open();
-            }
-            int data = 0;
-            if(rowView != null)
-            {
-                id_k = rowView.Row[0].ToString();
-                cmd = new SqlCommand("Select * from dbo.wyporzyczenia where id_czytelnik =" + id_k, con);
-                SqlDataReader czyt_data = cmd.ExecuteReader();
-                while (czyt_data.Read())
-                {
-                    data++;
-
-                }
-                do_wyporzyczenia1.Content = "Data wyporzyczenia.: " + data.ToString();
-            }
-            con.Close();
+            DataRowView wiersz = aktualnie_wyporzyczone.SelectedItem as DataRowView;
+            
+            do_wyporzyczenia1.Content = "Data wyporzyczenia.: " + wiersz.Row.ItemArray[3].ToString();
         }
 
         private void historia_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -157,12 +143,27 @@ namespace biblioteka
             if (rowView != null)
             {
                 cmd = new SqlCommand("Select * from dbo.wyporzyczenia where data_zwrot is not null");
-                SqlDataReader historia = cmd.ExecuteReader();
-                while (historia.Read())
-                {
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                historia.ItemsSource = dt.DefaultView;
+                cmd.Dispose();
 
-                }
             }
+
+            con.Close();
+        }
+        private void wczytaj_historie()
+        {
+            
+            string historia_wyporzyczen = "Select * from dbo.wyporzyczenia where data_zwrot is not null";
+            cmd = new SqlCommand(historia_wyporzyczen, con);
+            con.Open();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            historia.ItemsSource = dt.DefaultView;
+            cmd.Dispose();
             con.Close();
         }
     }

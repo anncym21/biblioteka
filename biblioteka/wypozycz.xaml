@@ -46,10 +46,6 @@
                     </Grid.ColumnDefinitions>
                     <DataGrid x:Name="historia" Grid.ColumnSpan="2" Margin="17,61,17,173" SelectionChanged="historia_SelectionChanged">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="id_ksiazki" />
-                            <DataGridTextColumn Header="tytul" />
-                            <DataGridTextColumn Header="data_wyp" />
-                            <DataGridTextColumn Header="data_zwrot" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
