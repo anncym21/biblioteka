@@ -1,0 +1,36 @@
+Podręcznik użytkowania.  
+Dokumentacja będzie zawierała instrukcję dla użytkowników biblioteki. 
+
+Na początku tworzymy zmienne. Query przechowuje zapytanie do bazy danych, zaś baza zapis umożliwiający połączenie z utworzoną baza. Tworzymy także zmienna conn która jest do łączenia z bazą, cmd jako sqlcomman oraz zmienna typu string przechowująca id ksiazki (id_k). 
+
+Tworzymy publiczna klasę wypożycz która odpowiada za to, co wyświetli aplikacja po uruchomieniu. Inicjuje się w niej nasz komponent, łączy baze z aplikacją oraz wczytuje funkcje utworzone poniżej. 
+
+Wczytaj_kategorie. 
+Tworzymy tutaj listę kategorii książek, które dodane zostają jako lista umożliwiająca wybór do comboboxa. 
+
+Wczytaj_wyporzyczone. 
+Tworzymy zmienna typu string przechowująca zapytanie, które pozwoli nam na wyświetlić książki do wypożyczenia. Następnie otwieramy połączenie z bazą. Tworzymy adapter oraz datatable. Wypełniamy adapter datatable. Wyświetlamy aktualnie wypożyczone i zamykamy połączenie z bazą. 
+
+Dostepne_egzemplarze. 
+Tworzymy zmienna  wybrana_kategoria. Jeśli jest pusta, otwiera się połączenie z bazą oraz wyświetli się cała baza. Jeśli wybierzemy kategorię, wykonuję się zapytanie, powodujące wyświetlenie tylko tych książek z bazy, które należą do wybranej kategorii. Następnie otwieramy połączenie z bazą. Tworzymy adapter oraz datatable. Do adaptera wprowadzamy datatable. Zamykamy połączenie z bazą. 
+
+
+Kategoria selection change
+
+Tworzymy zmienna typu string pobierająca z comboboxa kategorię. Dodaje ja następnie do dostępnych egzemplarzy. 
+
+Do wypożyczenia selection change
+Tworzymy datagrid oraz deklarujemy rowview. Jeżeli połączenie jest zamknięte, otwieramy je. Tworzymy zmienna ile równą 0. Jeżeli rowview nie równa się 0 (nie jest puste), to deklarujemy wartość id książki. Piszemy zapytanie, mające zwrócić książki, które można wypożyczyć. Tworzymy nowy datareader. Jeżeli jest on odczytywany, to zwiększamy wartość kolejnych id o 1. W ilosc_egzemplarzy w labelu wyświetli nam się ilość dostępnych tytułów. Zamykamy połączenie. 
+
+Przycisk
+Po naciśnięciu przycisku, do bazy zostaje wysłane zapytanie pozwalające na zamianę dostępu książki, którą wypożyczymy. Dostajemy także komunikat, iż książka została przez nas wypożyczona. 
+
+Aktualnie wypożyczone
+
+Do labelu dodajemy tekst oraz funkcję umożliwiającą pobranie i wyświetlenie daty wypożyczenia książki. 
+
+Historia wypożyczeń
+Jeżeli połączenie z bazą jest zamknięte to je otwieramy. Jeżeli wiersz nie jest pusty, to tworzymy adapter oraz datatable. 
+
+Wczytywanie historii
+Tworzymy zmienna typu string przechowująca zapytanie które pozwoli na wyświetlenie tylko tych książek, które mają datę zwrotu. Następnie wyświetli się to wszystko w gridzie.
